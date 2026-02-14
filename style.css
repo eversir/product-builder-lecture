@@ -32,6 +32,7 @@ body.light-mode {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+    perspective: 1000px; /* For 3D effect */
 }
 
 .number {
@@ -45,7 +46,31 @@ body.light-mode {
     margin: 0 5px;
     font-size: 24px;
     font-weight: bold;
+    opacity: 0; /* Initially hidden */
+    transform: rotateY(180deg) scale(0);
+    transition: opacity 0.5s, transform 0.5s;
 }
+
+.number.visible {
+    opacity: 1;
+    transform: rotateY(0deg) scale(1);
+}
+
+@keyframes spin-in {
+    0% {
+        transform: rotateY(180deg) scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: rotateY(0deg) scale(1);
+        opacity: 1;
+    }
+}
+
+.number.spin {
+    animation: spin-in 0.5s forwards;
+}
+
 
 body.dark-mode .number {
     background-color: #333;

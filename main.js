@@ -17,11 +17,15 @@ function generateNumbers() {
 
     lottoNumbers.sort((a, b) => a - b);
 
-    lottoNumbers.forEach(number => {
+    lottoNumbers.forEach((number, index) => {
         const numberDiv = document.createElement('div');
         numberDiv.classList.add('number');
         numberDiv.textContent = number;
         numbersDiv.appendChild(numberDiv);
+
+        setTimeout(() => {
+            numberDiv.classList.add('visible', 'spin');
+        }, index * 200); // Stagger the animation
     });
 }
 
@@ -38,4 +42,4 @@ function toggleTheme() {
 
 // Set initial theme
 document.body.classList.add('light-mode');
-generateNumbers();
+//generateNumbers(); // Don't generate numbers on page load
