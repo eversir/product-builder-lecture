@@ -1,30 +1,41 @@
-document.getElementById('generate').addEventListener('click', () => {
-    const numbersContainer = document.getElementById('numbers');
-    numbersContainer.innerHTML = '';
-    const lottoNumbers = generateLottoNumbers();
-    lottoNumbers.forEach(number => {
-        const ball = document.createElement('div');
-        ball.className = 'ball';
-        ball.textContent = number;
-        ball.style.backgroundColor = getRandomColor();
-        numbersContainer.appendChild(ball);
-    });
-});
+const generateBtn = document.getElementById('generate');
+const numbersDiv = document.getElementById('numbers');
+const themeToggle = document.getElementById('theme-toggle');
 
-function generateLottoNumbers() {
-    const numbers = new Set();
-    while (numbers.size < 6) {
+generateBtn.addEventListener('click', generateNumbers);
+themeToggle.addEventListener('click', toggleTheme);
+
+function generateNumbers() {
+    numbersDiv.innerHTML = '';
+    const lottoNumbers = [];
+    while (lottoNumbers.length < 6) {
         const randomNumber = Math.floor(Math.random() * 45) + 1;
-        numbers.add(randomNumber);
+        if (!lottoNumbers.includes(randomNumber)) {
+            lottoNumbers.push(randomNumber);
+        }
     }
-    return Array.from(numbers).sort((a, b) => a - b);
+
+    lottoNumbers.sort((a, b) => a - b);
+
+    lottoNumbers.forEach(number => {
+        const numberDiv = document.createElement('div');
+        numberDiv.classList.add('number');
+        numberDiv.textContent = number;
+        numbersDiv.appendChild(numberDiv);
+    });
 }
 
-function getRandomColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
+function toggleTheme() {
+    const body = document.body;
+    if (body.classList.contains('dark-mode')) {
+        body.classList.remove('dark-mode');
+        body.classList.add('light-mode');
+    } else {
+        body.classList.remove('light-mode');
+        body.classList.add('dark-mode');
     }
-    return color;
 }
+
+// Set initial theme
+document.body.classList.add('light-mode');
+generateNumbers();
