@@ -48,7 +48,7 @@ body.light-mode {
     font-weight: bold;
     opacity: 0; /* Initially hidden */
     transform: rotateY(180deg) scale(0);
-    transition: opacity 0.5s, transform 0.5s;
+    transition: opacity 0.5s, transform 0.5s, background-color 0.3s;
 }
 
 .number.visible {
@@ -71,11 +71,22 @@ body.light-mode {
     animation: spin-in 0.5s forwards;
 }
 
+.color-yellow { background-color: #ffeb3b; color: #000; }
+.color-blue { background-color: #2196f3; color: #fff; }
+.color-red { background-color: #f44336; color: #fff; }
+.color-dark-gray { background-color: #616161; color: #fff; }
+.color-green { background-color: #4caf50; color: #fff; }
 
 body.dark-mode .number {
     background-color: #333;
     color: #fff;
 }
+
+body.dark-mode .color-yellow { background-color: #c8b900; }
+body.dark-mode .color-blue { background-color: #0069c0; }
+body.dark-mode .color-red { background-color: #b9000a; }
+body.dark-mode .color-dark-gray { background-color: #373737; }
+body.dark-mode .color-green { background-color: #007d04; }
 
 button {
     padding: 10px 20px;

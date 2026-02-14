@@ -5,6 +5,14 @@ const themeToggle = document.getElementById('theme-toggle');
 generateBtn.addEventListener('click', generateNumbers);
 themeToggle.addEventListener('click', toggleTheme);
 
+function getNumberColor(number) {
+    if (number <= 10) return 'color-yellow';
+    if (number <= 20) return 'color-blue';
+    if (number <= 30) return 'color-red';
+    if (number <= 40) return 'color-dark-gray';
+    return 'color-green';
+}
+
 function generateNumbers() {
     numbersDiv.innerHTML = '';
     const lottoNumbers = [];
@@ -19,7 +27,7 @@ function generateNumbers() {
 
     lottoNumbers.forEach((number, index) => {
         const numberDiv = document.createElement('div');
-        numberDiv.classList.add('number');
+        numberDiv.classList.add('number', getNumberColor(number));
         numberDiv.textContent = number;
         numbersDiv.appendChild(numberDiv);
 
