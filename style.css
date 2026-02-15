@@ -19,7 +19,7 @@ body.light-mode {
 }
 
 #header {
-    position: absolute;
+    position: fixed;
     top: 10px;
     right: 10px;
 }
@@ -96,6 +96,7 @@ button {
 
 .contact-section {
     margin-top: 50px;
+    text-align: left;
 }
 
 .form-group {
